@@ -1,0 +1,32 @@
+{
+	"auto_complete": false,
+	"block_caret": true,
+  "bold_folder_labels": true,
+	"color_scheme": "Monokai Pro.sublime-color-scheme",
+	"ensure_newline_at_eof_on_save": true,
+	"font_face": "Fira Code",
+	"font_size": 16,
+	"font_options": [
+		"subpixel_antialias"
+	],
+	"highlight_line": true,
+	"ignored_packages":
+	[
+		"Vintage",
+	],
+	"index_files": true,
+	"line_padding_top": 2,
+	"line_padding_bottom": 2,
+	"rulers":
+	[
+		79
+	],
+	"scroll_speed": 0,
+	"scroll_past_end": true,
+  "tab_size": 2,
+	"theme": "Adaptive.sublime-theme",
+  "translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": "all",
+  "ui_scale": 1,
+	"word_wrap": true,
+}
