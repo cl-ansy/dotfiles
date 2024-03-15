@@ -13,5 +13,5 @@ curl -fLo "FiraCode Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fo
 Assuming XDG_CONFIG_HOME is ~/.config
 
 ```bash
-for dir in ./.config/*; do; ln -s $dir ~/.config/; done
+bash ./links.sh
 ```
