@@ -1,18 +1,17 @@
 # dotfiles
 
-1. Install Oh-My-Zsh
+### Installing patched FiraCode - https://www.nerdfonts.com/
 
-2. Install patched FiraCode - https://www.nerdfonts.com/
+```
+mkdir -p ~/.local/share/fonts
+cd ~/.local/share/fonts
+curl -fLo "FiraCode Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Nerd%20Font%20Complete.ttf
+```
 
-> mkdir -p ~/.local/share/fonts
-> cd ~/.local/share/fonts
-> curl -fLo "FiraCode Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Nerd%20Font%20Complete.ttf
+### Linking dotfiles
 
-3. Install Packer - https://github.com/wbthomason/packer.nvim#quickstart
+Assuming XDG_CONFIG_HOME is ~/.config
 
-4. Link dotfiles
-
-> # Assuming XDG_CONFIG_HOME is ~/.config
-> ln -s ~/dotfiles/zsh/.zshrc ~/.zshrc
-> ln -s ~/dotfiles/nvim ~/.config/nvim
-
+```bash
+for dir in ./.config/*; do; ln -s $dir ~/.config/; done
+```
