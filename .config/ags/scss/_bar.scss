@@ -5,7 +5,7 @@ $bar_ws_width_focus: 0.614rem;
 $bar_ws_width_focus_active: 2.045rem;
 
 @mixin bar-group-rounding {
-    @include small-rounding;
+    @include full-rounding;
 }
 
 .bar-height {
