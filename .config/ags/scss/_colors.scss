@@ -204,3 +204,41 @@ $workspaceOnLayer2: $onSurfaceVariant;
 // $workspaceOnLayer3: #84EFDB;
 // $workspaceOnLayer2: #84EFDB;
 
+// Dracula
+$layer0: #0e1116;
+$layer1: #282a36;
+$layer2: #21222c;
+$layer3: #44475a;
+$onLayer0: #f8f8f2;
+$onLayer1: #f8f8f2;
+$onLayer1Inactive: #bd93f9;
+$onLayer2: #f8f8f2;
+$onLayer3: #f8f8f2;
+
+$timeOnLayer1: $onLayer1;
+$dateOnLayer1: $onLayer1;
+
+$ramLayer2: $layer2;
+$ramOnLayer1: #8be9fd;
+$ramOnLayer2: #8be9fd;
+
+$swapLayer2: $layer2;
+$swapOnLayer1: #ff6e6e;
+$swapOnLayer2: #ff6e6e;
+
+$cpuLayer2: $layer2;
+$cpuOnLayer1: #f1fa8c;
+$cpuOnLayer2: #f1fa8c;
+
+$musicLayer2: $layer2;
+$musicOnLayer1: #6272a4;
+$musicOnLayer2: #6272a4;
+
+$battLayer2: $layer2;
+$battOnLayer1: #50fa7b;
+$battOnLayer2: #50fa7b;
+
+$workspaceLayer3: #bd93f9; // circle
+$workspaceOnLayer1Inactive: $onLayer1Inactive;
+$workspaceOnLayer2: #f8f8f2; //text
+$workspaceOnLayer3: #282a36; // dot

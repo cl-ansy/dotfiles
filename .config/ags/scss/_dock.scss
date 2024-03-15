@@ -1,12 +1,12 @@
 .dock-bg {
-    @include large-rounding;
+    // @include large-rounding;
     @include elevation2;
     background-color: $t_background;
     padding: 0.682rem;
 }
 
 .dock-app-btn {
-    @include normal-rounding;
+    // @include normal-rounding;
     padding: 0.273rem;
 }
 
