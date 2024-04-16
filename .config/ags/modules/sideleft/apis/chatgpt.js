@@ -11,10 +11,10 @@ import { ConfigToggle, ConfigSegmentedSelection, ConfigGap } from '../../.common
 import { markdownTest } from '../../.miscutils/md2pango.js';
 import { MarginRevealer } from '../../.widgethacks/advancedrevealers.js';
 import { MaterialIcon } from '../../.commonwidgets/materialicon.js';
+import { chatEntry } from '../apiwidgets.js';
 
 export const chatGPTTabIcon = Icon({
     hpack: 'center',
-    className: 'sidebar-chat-apiswitcher-icon',
     icon: `openai-symbolic`,
 });
 
@@ -182,15 +182,6 @@ const GPTSettings = () => MarginRevealer({
                 className: 'sidebar-chat-settings-toggles',
                 children: [
                     ConfigToggle({
-                        icon: 'cycle',
-                        name: 'Cycle models',
-                        desc: 'Helps avoid exceeding the API rate of 3 messages per minute.\nTurn this on if you message rapidly.',
-                        initValue: GPTService.cycleModels,
-                        onChange: (self, newValue) => {
-                            GPTService.cycleModels = newValue;
-                        },
-                    }),
-                    ConfigToggle({
                         icon: 'model_training',
                         name: 'Enhancements',
                         desc: 'Tells the model:\n- It\'s a Linux sidebar assistant\n- Be brief and use bullet points',
@@ -247,7 +238,7 @@ const GPTWelcome = () => Box({
 });
 
 export const chatContent = Box({
-    className: 'spacing-v-15',
+    className: 'spacing-v-5',
     vertical: true,
     setup: (self) => self
         .hook(GPTService, (box, id) => {
@@ -355,6 +346,7 @@ export const chatGPTView = Box({
                 // Always scroll to bottom with new content
                 const adjustment = scrolledWindow.get_vadjustment();
                 adjustment.connect("changed", () => {
+                    if(!chatEntry.hasFocus) return;
                     adjustment.set_value(adjustment.get_upper() - adjustment.get_page_size());
                 })
             }

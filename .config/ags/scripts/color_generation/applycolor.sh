@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-term_alpha=100 # Set this to < 100 make all your terminals transparent
+term_alpha=100 #Set this to < 100 make all your terminals transparent
+# sleep 0 # idk i wanted some delay or colors dont get applied properly
 if [ ! -d "$HOME"/.cache/ags/user/generated ]; then
     mkdir -p "$HOME"/.cache/ags/user/generated
 fi
@@ -11,7 +12,7 @@ colorstrings=''
 colorlist=()
 colorvalues=()
 
-# wallpath=$(swww query | awk -F 'image: ' '{print $2}')
+# wallpath=$(swww query | head -1 | awk -F 'image: ' '{print $2}')
 # wallpath_png="$HOME"'/.cache/ags/user/generated/hypr/lockscreen.png'
 # convert "$wallpath" "$wallpath_png"
 # wallpath_png=$(echo "$wallpath_png" | sed 's/\//\\\//g')
@@ -34,7 +35,7 @@ get_light_dark() {
     if [ ! -f "$HOME"/.cache/ags/user/colormode.txt ]; then
         echo "" > "$HOME"/.cache/ags/user/colormode.txt
     else
-        lightdark=$(cat "$HOME"/.cache/ags/user/colormode.txt) # either "" or "-l"
+        lightdark=$(sed -n '1p' "$HOME/.cache/ags/user/colormode.txt")
     fi
     echo "$lightdark"
 }
@@ -132,7 +133,7 @@ apply_gtk() { # Using gradience-cli
     # Set light/dark preference
     # And set GTK theme manually as Gradience defaults to light adw-gtk3
     # (which is unreadable when broken when you use dark mode)
-    if [ "$lightdark" = "-l" ]; then
+    if [ "$lightdark" = "light" ]; then
         gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3'
         gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
     else

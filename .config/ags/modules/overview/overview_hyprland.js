@@ -18,7 +18,6 @@ import { substitute } from "../.miscutils/icons.js";
 
 const NUM_OF_WORKSPACES_SHOWN = userOptions.overview.numOfCols * userOptions.overview.numOfRows;
 const TARGET = [Gtk.TargetEntry.new('text/plain', Gtk.TargetFlags.SAME_APP, 0)];
-const POPUP_CLOSE_TIME = 100; // ms
 
 const overviewTick = Variable(false);
 
@@ -86,8 +85,8 @@ export default () => {
                 margin-bottom: -${Math.round((y + h) * userOptions.overview.scale)}px;
             `,
             onClicked: (self) => {
+                Hyprland.messageAsync(`dispatch focuswindow address:${address}`);
                 App.closeWindow('overview');
-                Utils.timeout(POPUP_CLOSE_TIME, () => Hyprland.messageAsync(`dispatch focuswindow address:${address}`));
             },
             onMiddleClickRelease: () => Hyprland.messageAsync(`dispatch closewindow address:${address}`),
             onSecondaryClick: (button) => {
@@ -128,23 +127,26 @@ export default () => {
                 child: Widget.Box({
                     vertical: true,
                     vpack: 'center',
-                    className: 'spacing-v-5',
                     children: [
                         appIcon,
                         // TODO: Add xwayland tag instead of just having italics
                         Widget.Revealer({
-                            transition: 'slide_down',
+                            transition: 'slide_right',
                             revealChild: revealInfoCondition,
-                            child: Widget.Label({
-                                maxWidthChars: 10, // Doesn't matter what number
-                                truncate: 'end',
-                                className: `${xwayland ? 'txt txt-italic' : 'txt'}`,
-                                css: `
+                            child: Widget.Revealer({
+                                transition: 'slide_down',
+                                revealChild: revealInfoCondition,
+                                child: Widget.Label({
+                                    maxWidthChars: 10, // Doesn't matter what number
+                                    truncate: 'end',
+                                    className: `margin-top-5 ${xwayland ? 'txt txt-italic' : 'txt'}`,
+                                    css: `
                                 font-size: ${Math.min(SCREEN_WIDTH, SCREEN_HEIGHT) * userOptions.overview.scale / 14.6}px;
                                 margin: 0px ${Math.min(SCREEN_WIDTH, SCREEN_HEIGHT) * userOptions.overview.scale / 10}px;
                             `,
-                                // If the title is too short, include the class
-                                label: (title.length <= 1 ? `${c}: ${title}` : title),
+                                    // If the title is too short, include the class
+                                    label: (title.length <= 1 ? `${c}: ${title}` : title),
+                                })
                             })
                         })
                     ]
@@ -156,7 +158,6 @@ export default () => {
 
                 button.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, TARGET, Gdk.DragAction.MOVE);
                 button.drag_source_set_icon_name(substitute(c));
-                // button.drag_source_set_icon_gicon(icon);
 
                 button.connect('drag-begin', (button) => {  // On drag start, add the dragging class
                     button.toggleClassName('overview-tasks-window-dragging', true);
@@ -231,10 +232,9 @@ export default () => {
             `,
             children: [Widget.EventBox({
                 hexpand: true,
-                vexpand: true,
                 onPrimaryClick: () => {
+                    Hyprland.messageAsync(`dispatch workspace ${index}`);
                     App.closeWindow('overview');
-                    Utils.timeout(POPUP_CLOSE_TIME, () => Hyprland.messageAsync(`dispatch workspace ${index}`));
                 },
                 setup: (eventbox) => {
                     eventbox.drag_dest_set(Gtk.DestDefaults.ALL, TARGET, Gdk.DragAction.COPY);

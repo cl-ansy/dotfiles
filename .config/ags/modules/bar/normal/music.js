@@ -59,20 +59,23 @@ const BarResource = (name, icon, command, circprogClassName = 'bar-batt-circprog
     const resourceLabel = Label({
         className: `txt-smallie ${textClassName}`,
     });
-    const widget = Box({
-        className: `spacing-h-4 ${textClassName}`,
-        children: [
-            resourceProgress,
-            resourceLabel,
-        ],
-        setup: (self) => self
-            .poll(5000, () => execAsync(['bash', '-c', command])
-                .then((output) => {
-                    resourceCircProg.css = `font-size: ${Number(output)}px;`;
-                    resourceLabel.label = `${Math.round(Number(output))}%`;
-                    widget.tooltipText = `${name}: ${Math.round(Number(output))}%`;
-                }).catch(print))
-        ,
+    const widget = Button({
+        onClicked: () => Utils.execAsync(['bash', '-c', `${userOptions.apps.taskManager}`]).catch(print),
+        child: Box({
+            className: `spacing-h-4 ${textClassName}`,
+            children: [
+                resourceProgress,
+                resourceLabel,
+            ],
+            setup: (self) => self
+                .poll(5000, () => execAsync(['bash', '-c', command])
+                    .then((output) => {
+                        resourceCircProg.css = `font-size: ${Number(output)}px;`;
+                        resourceLabel.label = `${Math.round(Number(output))}%`;
+                        widget.tooltipText = `${name}: ${Math.round(Number(output))}%`;
+                    }).catch(print))
+            ,
+        })
     });
     return widget;
 }
@@ -208,18 +211,20 @@ export default () => {
     return EventBox({
         onScrollUp: (self) => switchToRelativeWorkspace(self, -1),
         onScrollDown: (self) => switchToRelativeWorkspace(self, +1),
-        onPrimaryClick: () => showMusicControls.setValue(!showMusicControls.value),
-        onSecondaryClick: () => execAsync(['bash', '-c', 'playerctl next || playerctl position `bc <<< "100 * $(playerctl metadata mpris:length) / 1000000 / 100"` &']).catch(print),
-        onMiddleClick: () => execAsync('playerctl play-pause').catch(print),
-        setup: (self) => self.on('button-press-event', (self, event) => {
-            if (event.get_button()[1] === 8) // Side button
-                execAsync('playerctl previous').catch(print)
-        }),
         child: Box({
             className: 'spacing-h-4',
             children: [
                 SystemResourcesOrCustomModule(),
-                BarGroup({ child: musicStuff }),
+                EventBox({
+                    child: BarGroup({ child: musicStuff }),
+                    onPrimaryClick: () => showMusicControls.setValue(!showMusicControls.value),
+                    onSecondaryClick: () => execAsync(['bash', '-c', 'playerctl next || playerctl position `bc <<< "100 * $(playerctl metadata mpris:length) / 1000000 / 100"` &']).catch(print),
+                    onMiddleClick: () => execAsync('playerctl play-pause').catch(print),
+                    setup: (self) => self.on('button-press-event', (self, event) => {
+                        if (event.get_button()[1] === 8) // Side button
+                            execAsync('playerctl previous').catch(print)
+                    }),
+                })
             ]
         })
     });
