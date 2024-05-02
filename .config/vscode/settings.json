@@ -15,7 +15,7 @@
 
   "git.confirmSync": false,
 
-  "workbench.colorTheme": "Dracula",
+  "workbench.colorTheme": "Dracula Soft",
   "workbench.iconTheme": "material-icon-theme",
 
   // formatters for various languages - mostly prettier
