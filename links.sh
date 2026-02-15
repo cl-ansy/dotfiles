@@ -1,4 +1,4 @@
-for dir in $(realpath ./.config/*);
+for dir in $(realpath ./home/.config/*);
 do
 	echo "Linking ${dir} to ~/.config";
 	ln -s $dir ~/.config;
