@@ -1,4 +1,0 @@
-idlehint 1700
-timeout 1800 'swaylock -f -i /home/clansy/Pictures/xFaKQfc.png'
-timeout 1805 'hyprctl dispatch dpms off' resume 'hyperctl dispatch dpms on'
-before-sleep 'swaylock -f -i /home/clansy/Pictures/xFaKQfc.png'
