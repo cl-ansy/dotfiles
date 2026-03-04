@@ -1,13 +1,14 @@
-# gang
+# ~/.claude
 
-A reusable Claude Code configuration: global instructions and slash commands shared across all projects.
+Global Claude Code configuration: coding standards and slash commands shared across all projects.
 
 ## Structure
 
 ```
-gang/
-├── CLAUDE.md           # Global agent instructions (symlinked to ~/.claude/CLAUDE.md)
-└── commands/           # Custom slash commands (symlinked to ~/.claude/commands/)
+~/.claude/
+├── CLAUDE.md           # Global agent instructions
+├── README.md           # This file
+└── commands/           # Custom slash commands
     ├── review.md       # /review   — deep code review
     ├── ship.md         # /ship     — test, commit, PR
     ├── refactor.md     # /refactor — targeted refactoring
@@ -23,17 +24,17 @@ gang/
 
 ## Install
 
-Symlink this repo's config into `~/.claude/` so it applies globally:
+These files live in the dotfiles repo at `~/Code/dotfiles/home/.claude/`. Symlink them into `~/.claude/` via `links.sh`, or manually:
 
 ```bash
 # Back up anything existing first
 cp ~/.claude/CLAUDE.md ~/.claude/CLAUDE.md.bak 2>/dev/null
 
 # Symlink global instructions
-ln -sf ~/Code/gang/CLAUDE.md ~/.claude/CLAUDE.md
+ln -sf ~/Code/dotfiles/home/.claude/CLAUDE.md ~/.claude/CLAUDE.md
 
 # Symlink commands directory
-ln -sf ~/Code/gang/commands ~/.claude/commands
+ln -sf ~/Code/dotfiles/home/.claude/commands ~/.claude/commands
 ```
 
 After this, all 11 commands (`/review`, `/ship`, `/refactor`, `/spec`, `/secure`, `/debug`, `/explain`, `/perf`, `/scaffold`, `/cleanup`, `/docs`) are available in any Claude Code session.
@@ -53,6 +54,6 @@ Extends global config. Project-specific rules:
 
 ## Customizing
 
-- Edit `CLAUDE.md` to change your global coding standards and workflow rules
+- Edit `CLAUDE.md` to change global coding standards and workflow rules
 - Add new `.md` files to `commands/` to create new slash commands
 - Use `$ARGUMENTS` in a command file to capture what's typed after the command name
