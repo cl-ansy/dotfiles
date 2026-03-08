@@ -1,4 +1,4 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
+-- This file can be loaded by calling `lua require('clansy.packer')` from your init.vim
 
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
@@ -21,12 +21,11 @@ return require('packer').startup(function(use)
   
   use 'airblade/vim-gitgutter'
 
-  use 'navarasu/onedark.nvim'
+  -- use 'navarasu/onedark.nvim'
+  use 'folke/tokyonight.nvim'
 
   use 'yuezk/vim-js'
   use 'maxmellon/vim-jsx-pretty'
-
-  use 'ThePrimeagen/vim-be-good'
 
   -- Treesitter
   use {

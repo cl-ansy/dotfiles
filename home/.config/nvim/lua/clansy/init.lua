@@ -1,4 +1,4 @@
-require("clansy.set")
+require("clansy.settings")
 require("clansy.remap")
 require("clansy.packer")
 require("clansy.tree")
