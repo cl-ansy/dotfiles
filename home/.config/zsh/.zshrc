@@ -1,30 +1,27 @@
-export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH"
-export ZSH="$ZDOTDIR/ohmyzsh"
-export LANG="en_US.UTF-8"
-export HISTFILE="~/.histfile"
-export HISTSIZE=100000
-export SAVEHIST=$HISTSIZE
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="af-magic"
+# Install zinit plugin manager
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
 
-# Uncomment the following line if pasting URLs and other text is messed up.
-DISABLE_MAGIC_FUNCTIONS="true"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-COMPLETION_WAITING_DOTS="true"
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
-source $ZSH/oh-my-zsh.sh
+# Plugins
+zinit light zdharma-continuum/fast-syntax-highlighting
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+zinit ice depth"1" # git clone depth
+zinit light romkatv/powerlevel10k
+zinit ice pick"async.zsh" src"pure.zsh" # with zsh-async library that's bundled with it.
+zinit light sindresorhus/pure
+zinit light spaceship-prompt/spaceship-prompt
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -37,3 +34,8 @@ alias ls="ls -lah --color=auto"
 alias gls="git status"
 alias gfr="git fetch; git rebase"
 alias vim="nvim"
+
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f "${ZDOTDIR}/.p10k.zsh" ]] || source "${ZDOTDIR}/.p10k.zsh"
+
+(( ! ${+functions[p10k]} )) || p10k finalize
