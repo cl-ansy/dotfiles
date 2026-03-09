@@ -13,17 +13,18 @@ source "${ZINIT_HOME}/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Plugins
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
-zinit ice depth"1" # git clone depth
-zinit light romkatv/powerlevel10k
+
 zinit ice pick"async.zsh" src"pure.zsh" # with zsh-async library that's bundled with it.
 zinit light sindresorhus/pure
-zinit light spaceship-prompt/spaceship-prompt
 
-# Preferred editor for local and remote sessions
+zinit light romkatv/powerlevel10k
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f "${ZDOTDIR}/.p10k.zsh" ]] || source "${ZDOTDIR}/.p10k.zsh"
+(( ! ${+functions[p10k]} )) || p10k finalize
+
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
@@ -35,7 +36,5 @@ alias gls="git status"
 alias gfr="git fetch; git rebase"
 alias vim="nvim"
 
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f "${ZDOTDIR}/.p10k.zsh" ]] || source "${ZDOTDIR}/.p10k.zsh"
-
-(( ! ${+functions[p10k]} )) || p10k finalize
+# Load any local configs
+[[ ! -f "${ZDOTDIR}/.zshrc.local" ]] || source "${ZDOTDIR}/.zshrc.local"

@@ -9,6 +9,6 @@ config.hide_tab_bar_if_only_one_tab = true
 
 config.font_size = 14
 config.font = wezterm.font 'Fira Code'
-config.color_scheme = 'Tokyo Night'
+config.color_scheme = 'Dracula (Gogh)'
 
 return config

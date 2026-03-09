@@ -1,5 +1,5 @@
 return {
   "folke/which-key.nvim",
-  "folke/tokyonight.nvim",
+  "Mofiqul/dracula.nvim",
   "airblade/vim-gitgutter",
 }
