@@ -1,3 +1,6 @@
+# Open a tmux dev session with a configurable pane layout for a directory.
+# Usage: muxd [directory]
+
 # --- Layout config ---
 # Each pane: "split_flag|command" (first pane has no split)
 # Split flags: -h (side by side), -v (top/bottom)
