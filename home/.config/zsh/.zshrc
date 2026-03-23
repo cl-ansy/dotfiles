@@ -24,6 +24,10 @@ if [[ -r "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Turn off all beeps
+# unsetopt BEEP
+# Turn off autocomplete beeps
+unsetopt LIST_BEEP
 
 # Install zinit plugin manager
 ZINIT_HOME="$XDG_DATA_HOME/zinit/zinit.git"
