@@ -3,7 +3,8 @@
 # Split flags: -h (side by side), -v (top/bottom)
 local panes=(
   "|"            # pane 1: shell (no command)
-  "-h|lazygit"   # pane 2: lazygit, split horizontally from pane 0
+  "-hd|lazygit"  # pane 2: lazygit, split horizontally from pane 1 without changing focus
+  "|claude"      # pane 3: another shell below pane 1
 )
 local focus=1    # which pane to focus after setup
 # -----------------
