@@ -3,7 +3,11 @@
 
 # --- Layout config ---
 # Each pane: "split_flag|command" (first pane has no split)
-# Split flags: -h (side by side), -v (top/bottom)
+# Split flags:
+# -h horizontal, -v vertical
+# -f new pane spans full width or height
+# -d dont focus new pane
+# -b put pane on other side (left or top)
 local panes=(
   "|"            # pane 1: shell (no command)
   "|claude".     # pane 2: claude below pane 1 shell
