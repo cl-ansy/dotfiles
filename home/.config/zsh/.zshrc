@@ -1,4 +1,6 @@
-export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH"
+export BUN="$HOME/.bun/bin"
+
+export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:$BUN:$PATH"
 export LANG="en_US.UTF-8"
 
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -63,3 +65,6 @@ export PAGER=less
 
 # Load any local configs
 [[ ! -f "${ZDOTDIR}/.zshrc.local" ]] || source "${ZDOTDIR}/.zshrc.local"
+
+# bun completions
+[ -s "/home/clansy/.bun/_bun" ] && source "/home/clansy/.bun/_bun"
