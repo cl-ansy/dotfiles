@@ -1,0 +1,52 @@
+# --- Layout config ---
+# Each pane: "split_flag|command" (first pane has no split)
+# Split flags: -h (side by side), -v (top/bottom)
+local panes=(
+  "|"            # pane 1: shell (no command)
+  "-h|lazygit"   # pane 2: lazygit, split horizontally from pane 0
+)
+local focus=1    # which pane to focus after setup
+# -----------------
+
+local dir="${1:-$PWD}"
+dir="${dir:A}"
+
+if [[ ! -d "$dir" ]]; then
+  echo "muxd: not a directory: $dir" >&2
+  return 1
+fi
+
+local name="muxd-${dir:t}"
+name="${name//./-}"
+
+if tmux has-session -t "=$name" 2>/dev/null; then
+  if [[ -z "$TMUX" ]]; then
+    tmux attach-session -t "$name"
+  else
+    tmux switch-client -t "$name"
+  fi
+  return
+fi
+
+if [[ -z "$TMUX" ]]; then
+  tmux new-session -d -s "$name" -c "$dir"
+else
+  tmux new-window -n "$name" -c "$dir"
+fi
+
+local split cmd
+for pane in "${panes[@]:1}"; do
+  split="${pane%%|*}"
+  cmd="${pane#*|}"
+  if [[ -z "$TMUX" ]]; then
+    tmux split-window $split -t "$name" -c "$dir" $cmd
+  else
+    tmux split-window $split -c "$dir" $cmd
+  fi
+done
+
+tmux select-pane -t "$focus"
+
+if [[ -z "$TMUX" ]]; then
+  tmux attach-session -t "$name"
+fi
