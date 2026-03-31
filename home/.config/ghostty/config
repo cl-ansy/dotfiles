@@ -1,0 +1,8 @@
+font-size = 14
+font-family = "Fira Code"
+
+theme = Dracula+
+
+unfocused-split-fill = #FFFFFF
+unfocused-split-opacity = 0.80
+
