@@ -3,6 +3,6 @@ font-family = "Fira Code"
 
 theme = Dracula+
 
-unfocused-split-fill = #FFFFFF
+unfocused-split-fill = #808080
 unfocused-split-opacity = 0.80
 
