@@ -1,8 +1,8 @@
 #!/bin/sh
 
-common="zsh tmux vim neovim lazygit jq ghostty"
+common="zsh tmux vim neovim lazygit jq ghostty zellij"
 
-fedora_copr="scottames/ghostty dejan/lazygit"
+fedora_copr="scottames/ghostty dejan/lazygit varlad/zellij"
 fedora="fira-code-fonts"
 
 mac="font-fira-code"
