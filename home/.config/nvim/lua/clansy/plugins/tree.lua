@@ -5,6 +5,7 @@ return {
       sort_by = "case_sensitive",
       view = { adaptive_size = true },
       renderer = { group_empty = true },
+      filters = { git_ignored = false },
       on_attach = function(bufnr)
         require("nvim-tree.keymap").on_attach_default(bufnr)
         local api = require("nvim-tree.api")
