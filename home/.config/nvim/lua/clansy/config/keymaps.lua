@@ -26,8 +26,15 @@ nnoremap("<leader>pv", "<cmd>Ex<CR>")
 -- Close open screen
 nnoremap("<C-q>", ":q!<CR>")
 
+-- arrows live on a home-row layer on my split keyboard
 -- Movement in Insert/Command Mode
 inoremap("<C-h>", "<Left>")
 inoremap("<C-j>", "<Down>")
 inoremap("<C-k>", "<Up>")
 inoremap("<C-l>", "<Right>")
+
+-- Shift+Arrow as hjkl in normal mode
+nnoremap("<S-Left>", "h")
+nnoremap("<S-Down>", "j")
+nnoremap("<S-Up>", "k")
+nnoremap("<S-Right>", "l")
