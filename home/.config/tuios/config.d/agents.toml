@@ -1,0 +1,18 @@
+# tuios settings for the agent orchestration skills in ~/Code/overlord
+# (tuios-review, tuios-review-watch, tuios-work). tuios reads every *.toml in
+# config.d and config.toml wins on any key both set.
+#
+# The daemon reads [hooks] once at start: after a change, `tuios kill-server`
+# then `tuios start-server` (or attach).
+
+[hooks]
+# Desktop notification when a pane needs the person or finishes. The Inbox is
+# the record; this is the nudge. Which states fire is [notifications.agent.states].
+after-agent-state = ["~/.config/tuios/hooks/agent-alert.sh"]
+
+[agents.approvals]
+# Hold Claude Code permission prompts for the Inbox (1 allow, 2 always, 3 deny)
+# instead of making you switch to the pane. Only one-line calls are held; the
+# rest are asked in the pane as usual.
+enabled = ["claude-code"]
+hold_seconds = 120
