@@ -16,3 +16,16 @@ after-agent-state = ["~/.config/tuios/hooks/agent-alert.sh"]
 # rest are asked in the pane as usual.
 enabled = ["claude-code"]
 hold_seconds = 120
+
+[appearance]
+# Workspace tabs show the name, or the number when unnamed. The agents put the
+# number in the name ("3 #93 repo") so opt+N still reads off the tab. Draw the
+# whole name instead of cutting it at 12 cells.
+dock_workspace_label_max = 0
+
+[appearance.sidebar]
+# A wide rail that is mostly the agents panel: sessions on top, agents below.
+# Add files:NN or terminals back into sections to get those lists again, and
+# nudge the width live with ctrl+b e then > or <.
+width = 64
+sections = "sessions:20,agents:80"
