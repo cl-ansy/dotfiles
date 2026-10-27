@@ -24,8 +24,14 @@ hold_seconds = 120
 dock_workspace_label_max = 0
 
 [appearance.sidebar]
-# A wide rail that is mostly the agents panel: sessions on top, agents below.
-# Add files:NN or terminals back into sections to get those lists again, and
-# nudge the width live with ctrl+b e then > or <.
+# A wide rail on the left that is mostly the agents panel: agents on top,
+# sessions below. Add files:NN or terminals back into sections to get those
+# lists again, and nudge the width live with ctrl+b e then > or <.
+position = "left"
 width = 64
-sections = "sessions:20,agents:80"
+sections = "agents:60,sessions:30,spacer:10"
+agent_rest_fold = "15m"
+header_case = "uppercase"
+header_style = "rule"
+row_style = "underline"
+density = "roomy"

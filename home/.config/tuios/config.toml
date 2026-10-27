@@ -116,3 +116,6 @@
 [startup]
 tiled = true
 daemon = true
+
+[spotlight]
+enabled = false
