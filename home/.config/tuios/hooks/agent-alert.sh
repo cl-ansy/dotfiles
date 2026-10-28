@@ -15,13 +15,14 @@ message="${TUIOS_AGENT_MESSAGE:-}"
 # A worker pane (a reviewer, a dev) finishing a turn is internal to its
 # orchestrator; only an orchestrator pane finishing is worth a notification,
 # since that is when there is a report or a question. Orchestrator panes are
-# named "watch ..." or "work ..." (tuios-review-orchestrator, tuios-work-orchestrator).
+# named "reviews: ..." (tuios-review-orchestrator), "manager" (tuios-work-orchestrator),
+# or the older "watch ..." / "work ...".
 case "$state" in
   needs_input) subtitle="Needs you" ;;
   errored)     subtitle="Errored" ;;
   done)
     case "${TUIOS_WINDOW_NAME:-}" in
-      watch*|work*) subtitle="Finished" ;;
+      reviews*|manager|watch*|work*) subtitle="Finished" ;;
       *) exit 0 ;;
     esac ;;
   *)           exit 0 ;;

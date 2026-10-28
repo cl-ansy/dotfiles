@@ -119,3 +119,30 @@ daemon = true
 
 [spotlight]
 enabled = false
+
+[appearance.sidebar.right]
+enabled = false
+
+[appearance.sidebar]
+enabled = true
+show_glyphs = true
+show_counts = false
+show_numbers = true
+file_icons = true
+file_icon_colors = true
+file_actions = true
+marquee = true
+tooltips = true
+
+[appearance]
+git_dirty = true
+global_session = true
+border_style = "thick"
+window_title_position = "bottom"
+window_title_style = "pill"
+session_border = false
+session_colors = false
+motion = "basic"
+
+[appearance.sidebar.left]
+enabled = true

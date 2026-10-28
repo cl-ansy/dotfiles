@@ -24,14 +24,23 @@ hold_seconds = 120
 dock_workspace_label_max = 0
 
 [appearance.sidebar]
-# A wide rail on the left that is mostly the agents panel: agents on top,
-# sessions below. Add files:NN or terminals back into sections to get those
-# lists again, and nudge the width live with ctrl+b e then > or <.
 position = "left"
-width = 64
-sections = "agents:60,sessions:30,spacer:10"
+width = 48
+# sections = "sessions:25,terminals,files:25,agents:34"
+# custom is the decisions section below.
+sections = "sessions,custom,agents"
 agent_rest_fold = "15m"
 header_case = "uppercase"
-header_style = "rule"
+header_style = "icon"
 row_style = "underline"
 density = "roomy"
+
+[appearance.sidebar.custom]
+# Decisions the orchestrators are waiting on you for, read from their state
+# files, so a row stays until you answer rather than until you read the mail.
+# Nothing waiting, no rows. Polled: "event:attention" registers but never
+# re-runs the rail section, so it is a short interval instead.
+# `tuios list-dock-components` shows it as rail/custom and says why if hidden.
+title = "decisions"
+command = "~/.config/tuios/sidebar/decisions.sh"
+refresh = "10s"
